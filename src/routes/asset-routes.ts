@@ -14,6 +14,7 @@ export default class AssetRouter implements RouterInterface {
   }
 
   get routes() {
+    router.get('/', this._assetController.getAllAssets);
     router.post(
       '/',
       InputValidatorMiddleware(AssetInputSchema),

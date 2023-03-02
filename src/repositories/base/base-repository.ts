@@ -14,6 +14,10 @@ export default class BaseRepository<ModelInterface>
     return await this._dbModel.findById(id);
   }
 
+  async findOne(searchParams: object) {
+    return await this._dbModel.findOne({ ...searchParams }).exec();
+  }
+
   async findAll() {
     return await this._dbModel.find({});
   }
