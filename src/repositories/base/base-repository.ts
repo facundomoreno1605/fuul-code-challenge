@@ -14,10 +14,14 @@ export default class BaseRepository<ModelInterface>
     return await this._dbModel.findById(id);
   }
 
-  async create(item: ModelInterface) {
-    const itemCreated = new this._dbModel(item);
-    await itemCreated.save();
+  async findAll() {
+    return await this._dbModel.find({});
+  }
 
-    return itemCreated;
+  async create(item: ModelInterface) {
+    const createdItem = new this._dbModel(item);
+    await createdItem.save();
+
+    return createdItem;
   }
 }

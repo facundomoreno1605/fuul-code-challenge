@@ -1,9 +1,11 @@
 import express from 'express';
-import routes from '../routes';
-import middlewares from '../middlewares';
+import * as routers from '../routes';
+import { ErrorHandlerMiddleware } from '../middlewares';
+
+const AssetRouter = new routers.AssetRouter();
 
 export default (app: express.Express) => {
-  app.use('/api/test', routes.testRouter);
+  app.use('/api/assets', AssetRouter.routes);
 
-  app.use(middlewares.errorHandler);
+  app.use(ErrorHandlerMiddleware);
 };

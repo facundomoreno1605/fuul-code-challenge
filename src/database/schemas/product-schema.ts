@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 import { ProductInterface } from '../../models';
-import { Assets } from '../../models/common';
 
 export default new mongoose.Schema<ProductInterface>({
   code: {
@@ -12,11 +11,7 @@ export default new mongoose.Schema<ProductInterface>({
     required: true
   },
   price: {
-    asset: {
-      type: String,
-      enum: [Assets.BTC, Assets.ETH],
-      required: true
-    },
+    asset: { type: mongoose.Schema.Types.ObjectId, ref: 'Assets' },
     quantity: {
       type: Number,
       required: true

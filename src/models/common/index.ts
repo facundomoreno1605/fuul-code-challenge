@@ -1,9 +1,6 @@
-export const enum Assets {
-  ETH = 'ETH',
-  BTC = 'BTC'
-}
+import { AssetInterface } from '..';
 
 export interface PriceInterface {
-  asset: Assets;
+  asset: AssetInterface;
   quantity: number;
 }

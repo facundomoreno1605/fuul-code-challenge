@@ -1,5 +1,1 @@
-import testRouter from './test';
-
-export default {
-  testRouter
-};
+export { default as AssetRouter } from './asset-routes';
