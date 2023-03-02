@@ -1,9 +1,9 @@
 import dotenv from 'dotenv';
+dotenv.config();
+
 import express from 'express';
 import serverSetup from './setup';
-
-dotenv.config();
-const { PORT, ENVIRONMENT } = process.env;
+import { PORT, ENVIRONMENT } from './configs';
 
 const app = express();
 
