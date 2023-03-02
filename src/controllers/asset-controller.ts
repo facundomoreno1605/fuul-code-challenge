@@ -2,7 +2,7 @@ import { AssetService } from '../services';
 import express from 'express';
 
 export default class AssetController {
-  async createAsset(req: express.Request, res: express.Response) {
+  async create(req: express.Request, res: express.Response) {
     const assetService = new AssetService();
     const { code, name } = req.body;
 
@@ -22,7 +22,7 @@ export default class AssetController {
     });
   }
 
-  async getAllAssets(req: express.Request, res: express.Response) {
+  async getAll(req: express.Request, res: express.Response) {
     const assetService = new AssetService();
 
     const assets = await assetService.findAll();

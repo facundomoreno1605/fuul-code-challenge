@@ -1,5 +1,5 @@
 import express from 'express';
-import AssetController from '../controllers/asset-controller';
+import { AssetController } from '../controllers';
 import { InputValidatorMiddleware } from '../middlewares';
 import { AssetInputSchema } from '../middlewares/input-schemas';
 import { RouterInterface } from './interfaces';
@@ -14,11 +14,11 @@ export default class AssetRouter implements RouterInterface {
   }
 
   get routes() {
-    router.get('/', this._assetController.getAllAssets);
+    router.get('/', this._assetController.getAll);
     router.post(
       '/',
       InputValidatorMiddleware(AssetInputSchema),
-      this._assetController.createAsset
+      this._assetController.create
     );
 
     return router;
