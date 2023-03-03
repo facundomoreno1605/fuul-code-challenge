@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose, { Model } from 'mongoose';
 import { ReadInterface, WriteInterface } from '../interfaces';
 
 export default class BaseRepository<ModelInterface>
@@ -10,8 +10,16 @@ export default class BaseRepository<ModelInterface>
     this._dbModel = dbModel;
   }
 
+  private idParser(id: string) {
+    return new mongoose.Types.ObjectId(id);
+  }
+
+  private idValidator(id: string) {
+    return mongoose.Types.ObjectId.isValid(id);
+  }
+
   async findById(id: string) {
-    return await this._dbModel.findById(id);
+    return await this._dbModel.findById(this.idParser(id));
   }
 
   async findOne(searchParams: object) {
@@ -27,5 +35,9 @@ export default class BaseRepository<ModelInterface>
     await createdItem.save();
 
     return createdItem;
+  }
+
+  async update(id: string, item: Partial<ModelInterface>) {
+    return await this._dbModel.findByIdAndUpdate(this.idParser(id), item);
   }
 }

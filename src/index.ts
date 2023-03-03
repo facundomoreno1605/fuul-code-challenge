@@ -2,6 +2,8 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import express from 'express';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+require('express-async-errors');
 import serverSetup from './setup';
 import { PORT, ENVIRONMENT } from './configs';
 

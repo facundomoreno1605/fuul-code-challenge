@@ -5,6 +5,10 @@ import { PromotionTypes } from '../../models/promotion-interface';
 export default new mongoose.Schema<CheckoutInterface>({
   products: [
     {
+      id: {
+        type: String,
+        required: true
+      },
       code: {
         type: String,
         required: true
@@ -17,37 +21,44 @@ export default new mongoose.Schema<CheckoutInterface>({
         type: Number,
         required: true
       },
+      price: {
+        assetCode: { type: String, required: true },
+        quantity: {
+          type: Number,
+          required: true
+        }
+      },
       promotionType: {
         type: String,
         enum: [PromotionTypes.BULK_PURCHASE, PromotionTypes.TWO_FOR_ONE],
         required: false
       },
       subTotal: {
-        assetCode: { type: String, required: true },
+        assetCode: { type: String, required: false },
         quantity: {
           type: Number,
-          required: true
+          required: false
         }
       },
       discount: {
-        assetCode: { type: String, required: true },
+        assetCode: { type: String, required: false },
         quantity: {
           type: Number,
-          required: true
+          required: false
         }
       },
       total: {
-        assetCode: { type: String, required: true },
+        assetCode: { type: String, required: false },
         quantity: {
           type: Number,
-          required: true
+          required: false
         }
       }
     }
   ],
   subTotal: [
     {
-      assetCode: { type: String, required: true },
+      assetCode: { type: String, required: false },
       quantity: {
         type: Number,
         required: true
@@ -56,19 +67,19 @@ export default new mongoose.Schema<CheckoutInterface>({
   ],
   discount: [
     {
-      assetCode: { type: String, required: true },
+      assetCode: { type: String, required: false },
       quantity: {
         type: Number,
-        required: true
+        required: false
       }
     }
   ],
   total: [
     {
-      assetCode: { type: String, required: true },
+      assetCode: { type: String, required: false },
       quantity: {
         type: Number,
-        required: true
+        required: false
       }
     }
   ]
