@@ -1,4 +1,5 @@
 import Joi from 'joi';
+import { PromotionTypes } from '../../models/promotion-interface';
 
 export default Joi.object({
   code: Joi.string().length(3).required(),
@@ -6,5 +7,9 @@ export default Joi.object({
   price: Joi.object({
     assetCode: Joi.string().length(3).required(),
     quantity: Joi.number().min(1).required()
-  })
+  }),
+  promotionType: Joi.string().valid(
+    PromotionTypes.BULK_PURCHASE,
+    PromotionTypes.TWO_FOR_ONE
+  )
 });

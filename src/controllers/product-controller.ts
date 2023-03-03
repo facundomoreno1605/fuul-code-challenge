@@ -9,16 +9,9 @@ export default class AssetController {
     const {
       code,
       name,
-      price: { assetCode, quantity }
+      price: { assetCode, quantity },
+      promotionType
     } = req.body;
-
-    let product = await productService.findOne({ code });
-
-    if (product) {
-      return res.status(422).json({
-        message: `Product with code: ${code} already exists.`
-      });
-    }
 
     const asset = await assetService.findOne({ code: assetCode });
 
@@ -28,13 +21,14 @@ export default class AssetController {
       });
     }
 
-    product = await productService.create({
+    const product = await productService.create({
       code,
       name,
       price: {
-        asset,
+        assetCode,
         quantity
-      }
+      },
+      promotionType
     });
 
     return res.status(201).json({

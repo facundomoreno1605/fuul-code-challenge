@@ -1,6 +1,4 @@
-import { AssetInterface } from '..';
-
 export interface PriceInterface {
-  asset: AssetInterface;
+  assetCode: string;
   quantity: number;
 }

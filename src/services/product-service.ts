@@ -8,8 +8,8 @@ export default class ProductService {
     this._productRepository = new ProductRepository();
   }
 
-  async create(asset: ProductInterface) {
-    return await this._productRepository.create(asset);
+  async create(product: ProductInterface) {
+    return await this._productRepository.create(product);
   }
 
   async findOne(searchParams: object) {
